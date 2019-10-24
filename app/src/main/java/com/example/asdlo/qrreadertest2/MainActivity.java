@@ -1,7 +1,9 @@
 package com.example.asdlo.qrreadertest2;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.hardware.Camera;
 import android.os.Vibrator;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     TextView textView;
     BarcodeDetector barcodeDetector;
 
+    public static String code;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         barcodeDetector = new BarcodeDetector.Builder(this).setBarcodeFormats(QR_CODE).build();
 
-        cameraSource = new CameraSource.Builder(this, barcodeDetector).setRequestedPreviewSize(640, 480).build();
-
+        cameraSource = new CameraSource.Builder(this, barcodeDetector).setRequestedPreviewSize(640, 480).setAutoFocusEnabled(true).build();
         surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
@@ -79,11 +81,17 @@ public class MainActivity extends AppCompatActivity {
                         public void run() {
                             Vibrator vibrator = (Vibrator)getApplicationContext().getSystemService(VIBRATOR_SERVICE);
                             vibrator.vibrate(100);
-                            textView.setText(qrCode.valueAt(0).displayValue);
+                            code = qrCode.valueAt(0).displayValue;
+                            openActrivity2 ();
                         }
                     });
                 }
             }
         });
+    }
+
+    public void openActrivity2 () {
+        Intent intent = new Intent(this, Activity2.class);
+        startActivity(intent);
     }
 }
