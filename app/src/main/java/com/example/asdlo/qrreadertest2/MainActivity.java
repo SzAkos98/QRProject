@@ -11,6 +11,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.asdlo.qrreadertest2.fragments.HistoryFragment;
+import com.example.asdlo.qrreadertest2.fragments.ProfileFragment;
+import com.example.asdlo.qrreadertest2.fragments.SearchFragment;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 

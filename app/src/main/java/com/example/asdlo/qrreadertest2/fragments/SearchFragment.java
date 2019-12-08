@@ -1,7 +1,6 @@
-package com.example.asdlo.qrreadertest2;
+package com.example.asdlo.qrreadertest2.fragments;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -14,7 +13,11 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.asdlo.qrreadertest2.R;
+import com.example.asdlo.qrreadertest2.model.History;
+import com.example.asdlo.qrreadertest2.viewModels.HistoryViewModel;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
@@ -38,6 +41,7 @@ public class SearchFragment extends Fragment {
                          Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_search,
                 container, false);
+        final HistoryViewModel historyViewModel = new HistoryViewModel(getActivity().getApplication());
 
 
         textView = (TextView) view.findViewById(R.id.startCommand);
@@ -86,18 +90,17 @@ public class SearchFragment extends Fragment {
                             Vibrator vibrator = (Vibrator) view.getContext().getSystemService(VIBRATOR_SERVICE);
                             vibrator.vibrate(100);
                             code = qrCode.valueAt(0).displayValue;
+                            History history = new History(code);
+                            historyViewModel.insert(history);
 
-                            openActiviry2();
+                            Toast.makeText(view.getContext(), "QR code added to the database", Toast.LENGTH_SHORT).show();
+
+                            getFragmentManager().beginTransaction().replace(R.id.fragment_container, new ResultFragment()).commit();
                         }
                     });
                 }
             }
         });
         return view;
-    }
-
-    public void openActiviry2() {
-        Intent intent = new Intent(getContext(), Activity2.class);
-        startActivity(intent);
     }
 }

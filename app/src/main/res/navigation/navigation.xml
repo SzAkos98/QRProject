@@ -7,14 +7,14 @@
 
     <fragment
         android:id="@+id/historyFragment"
-        android:name="com.example.asdlo.qrreadertest2.HistoryFragment"
+        android:name="com.example.asdlo.qrreadertest2.fragments.HistoryFragment"
         android:label="fragment_history"
         tools:layout="@layout/fragment_history" />
     <activity
         android:id="@+id/activity2"
-        android:name="com.example.asdlo.qrreadertest2.Activity2"
+        android:name="com.example.asdlo.qrreadertest2.fragments.ResultFragment"
         android:label="activity_2"
-        tools:layout="@layout/activity_2" />
+        tools:layout="@layout/fragment_result" />
     <activity
         android:id="@+id/mainActivity"
         android:name="com.example.asdlo.qrreadertest2.MainActivity"
