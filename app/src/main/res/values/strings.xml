@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">qrReaderTest2</string>
+    <string name="openBrowser">Open the wbsite link</string>
+    <string name="readAgain">Read QR code again</string>
+    <string name="starCommand">Please focus on the QR code!</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>
