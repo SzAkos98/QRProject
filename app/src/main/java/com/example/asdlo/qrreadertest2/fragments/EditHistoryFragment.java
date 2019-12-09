@@ -1,5 +1,7 @@
 package com.example.asdlo.qrreadertest2.fragments;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,6 +21,8 @@ import com.example.asdlo.qrreadertest2.viewModels.HistoryViewModel;
 public class EditHistoryFragment extends Fragment {
 
     private EditText editHistoryEditText;
+    private String url;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -56,6 +60,21 @@ public class EditHistoryFragment extends Fragment {
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container, new HistoryFragment()).commit();
             }
         });
+
+        Button goUrlBtnEdit;
+        goUrlBtnEdit = (Button) view.findViewById(R.id.goUrlBtnEdit);
+        goUrlBtnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                url = HistoryFragment.dbQrCode;
+                if  (!url.startsWith("http://") && !url.startsWith("https://"))
+                    url = "http://" + url;
+                Uri uriUrl = Uri.parse(url);
+                Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+                startActivity(launchBrowser);
+            }
+        });
+
 
         return view;
     }
