@@ -2,9 +2,12 @@ package com.example.asdlo.qrreadertest2.fragments;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,9 +29,17 @@ public class HistoryFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             final Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_history,
                 container, false);
+
+        FloatingActionButton addHistoryBtn = view.findViewById(R.id.addHistoryBtn);
+        addHistoryBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new AddHistoryFragment()).commit();
+            }
+        });
 
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
