@@ -26,6 +26,8 @@ import java.util.List;
 
 public class HistoryFragment extends Fragment {
     private HistoryViewModel historyViewModel;
+    public static String dbQrCode;
+    public static int dbQrCodeId;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,6 +71,15 @@ public class HistoryFragment extends Fragment {
                 Toast.makeText(view.getContext(),"History deleted", Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(recyclerView);
+
+        adaptor.setOnItemClickedListener(new HistoryAdaptor.OnItemClickListener() {
+            @Override
+            public void onItemClick(History history) {
+                dbQrCodeId = history.getId();
+                dbQrCode = history.getQrCode();
+                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new EditHistoryFragment()).commit();
+            }
+        });
         return view;
     }
 

@@ -16,38 +16,39 @@ import com.example.asdlo.qrreadertest2.R;
 import com.example.asdlo.qrreadertest2.model.History;
 import com.example.asdlo.qrreadertest2.viewModels.HistoryViewModel;
 
-public class AddHistoryFragment extends Fragment {
+public class EditHistoryFragment extends Fragment {
 
-
-    private EditText addHistoryEditText;
+    private EditText editHistoryEditText;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_add_history,
+        final View view = inflater.inflate(R.layout.fragment_edit_history,
                 container, false);
         final HistoryViewModel historyViewModel = new HistoryViewModel(getActivity().getApplication());
 
-        addHistoryEditText = view.findViewById(R.id.addHistoryEditText);
+        editHistoryEditText = view.findViewById(R.id.editHistoryEditText);
+        editHistoryEditText.setText(HistoryFragment.dbQrCode);
 
-        Button addHistoryBtn = view.findViewById(R.id.save_history);
+        Button addHistoryBtn = view.findViewById(R.id.update_history);
 
         addHistoryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String qrCode = addHistoryEditText.getText().toString();
+                String qrCode = editHistoryEditText.getText().toString();
 
                 if (qrCode.trim().isEmpty()) {
                     Toast.makeText(getContext(), "Please insert qrCode", Toast.LENGTH_LONG).show();
                 } else {
                     History history = new History(qrCode);
-                    historyViewModel.insert(history);
+                    history.setId(HistoryFragment.dbQrCodeId);
+                    historyViewModel.update(history);
                     Toast.makeText(getContext(), "History saved", Toast.LENGTH_SHORT).show();
                 }
                 getFragmentManager().beginTransaction().replace(R.id.fragment_container, new HistoryFragment()).commit();
             }
         });
 
-        Button backHistoryBtn = view.findViewById(R.id.back_to_history);
+        Button backHistoryBtn = view.findViewById(R.id.back_to_history_edit);
 
         backHistoryBtn.setOnClickListener(new View.OnClickListener() {
             @Override

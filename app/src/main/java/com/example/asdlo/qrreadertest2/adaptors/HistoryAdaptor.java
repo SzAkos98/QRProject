@@ -17,6 +17,7 @@ import java.util.List;
 public class HistoryAdaptor extends RecyclerView.Adapter<HistoryAdaptor.HistoryHolder> {
 
     private List<History> histories = new ArrayList<>();
+    private OnItemClickListener listener;
 
     @NonNull
     @Override
@@ -55,6 +56,24 @@ public class HistoryAdaptor extends RecyclerView.Adapter<HistoryAdaptor.HistoryH
             super(itemView);
             textViewQrCode = itemView.findViewById(R.id.text_view_qrCode);
             textViewID = itemView.findViewById(R.id.text_view_id);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
+                        listener.onItemClick(histories.get(position));
+                    }
+                }
+            });
         }
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(History history);
+    }
+
+    public void setOnItemClickedListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 }
