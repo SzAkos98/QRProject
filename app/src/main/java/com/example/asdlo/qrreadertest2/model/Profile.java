@@ -17,8 +17,9 @@ public class Profile {
     @ColumnInfo(name = "age")
     private int age;
 
-    public Profile(String name) {
+    public Profile(String name, int age) {
         this.name=name;
+        this.age=age;
     }
 
     public int getId() {

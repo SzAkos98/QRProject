@@ -12,10 +12,6 @@ import android.widget.TextView;
 import com.example.asdlo.qrreadertest2.R;
 import com.example.asdlo.qrreadertest2.model.History;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
 public class HistoryAdaptor extends ListAdapter<History, HistoryAdaptor.HistoryHolder> {
 
 

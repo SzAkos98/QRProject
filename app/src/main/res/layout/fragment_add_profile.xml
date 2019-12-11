@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="63dp"
+    tools:context=".fragments.AddProfileFragment">
+
+    <EditText
+        android:id="@+id/addProfileEditText_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/addProfileEditText_age"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Age"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/save_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save" />
+
+    <Button
+        android:id="@+id/back_to_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back" />
+
+</LinearLayout>

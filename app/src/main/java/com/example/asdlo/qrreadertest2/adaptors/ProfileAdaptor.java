@@ -46,7 +46,7 @@ public class ProfileAdaptor extends ListAdapter<Profile, ProfileAdaptor.ProfileH
     public void onBindViewHolder(@NonNull ProfileHolder proflieHolder, int i) {
         Profile currentProfile = getItem(i);
         proflieHolder.textViewName.setText(currentProfile.getName());
-        proflieHolder.textViewAge.setText(currentProfile.getAge());
+        proflieHolder.textViewAge.setText(Integer.toString(currentProfile.getAge()));
         proflieHolder.textViewID.setText(String.valueOf(currentProfile.getId()));
     }
 
