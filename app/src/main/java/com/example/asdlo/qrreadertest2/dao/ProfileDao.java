@@ -1,4 +1,4 @@
-package com.example.asdlo.qrreadertest2.datebase;
+package com.example.asdlo.qrreadertest2.dao;
 
 
 import android.arch.lifecycle.LiveData;
@@ -9,20 +9,21 @@ import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
 import com.example.asdlo.qrreadertest2.model.History;
+import com.example.asdlo.qrreadertest2.model.Profile;
 
 import java.util.List;
 
 @Dao
-public interface HistoryDao {
-    @Query("SELECT * FROM history")
-    LiveData<List<History>> loadAllHistory();
+public interface ProfileDao {
+    @Query("SELECT * FROM profile")
+    LiveData<List<Profile>> loadAllProfile();
 
     @Insert
-    void insertHistory(History history);
+    void insertProfile(Profile profile);
 
     @Update
-    void updateHistory(History history);
+    void updateProfile(Profile profile);
 
     @Delete
-    void deleteHistory(History history);
+    void deleteProfile(Profile profile);
 }

@@ -1,6 +1,8 @@
 package com.example.asdlo.qrreadertest2.adaptors;
 
 import android.support.annotation.NonNull;
+import android.support.v7.recyclerview.extensions.ListAdapter;
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,10 +16,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class HistoryAdaptor extends RecyclerView.Adapter<HistoryAdaptor.HistoryHolder> {
+public class HistoryAdaptor extends ListAdapter<History, HistoryAdaptor.HistoryHolder> {
 
-    private List<History> histories = new ArrayList<>();
+
     private OnItemClickListener listener;
+
+    public HistoryAdaptor() {
+        super(DIFF_CALLBACK);
+    }
+
+    private static final DiffUtil.ItemCallback<History> DIFF_CALLBACK = new DiffUtil.ItemCallback<History>() {
+        @Override
+        public boolean areItemsTheSame(@NonNull History oldItem, @NonNull History newItem) {
+            return oldItem.getId() == newItem.getId();
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull History oldItem, @NonNull History newItem) {
+            return oldItem.getQrCode().equals(newItem.getQrCode());
+        }
+    };
 
     @NonNull
     @Override
@@ -29,23 +47,13 @@ public class HistoryAdaptor extends RecyclerView.Adapter<HistoryAdaptor.HistoryH
 
     @Override
     public void onBindViewHolder(@NonNull HistoryHolder historyHolder, int i) {
-        History currentHistory = histories.get(i);
+        History currentHistory = getItem(i);
         historyHolder.textViewQrCode.setText(currentHistory.getQrCode());
         historyHolder.textViewID.setText(String.valueOf(currentHistory.getId()));
     }
 
-    @Override
-    public int getItemCount() {
-        return histories.size();
-    }
-
-    public void setHistories(List<History> histories) {
-        this.histories = histories;
-        notifyDataSetChanged();
-    }
-
     public History getHistoryAt(int position) {
-        return histories.get(position);
+        return getItem(position);
     }
 
     class HistoryHolder extends RecyclerView.ViewHolder {
@@ -62,7 +70,7 @@ public class HistoryAdaptor extends RecyclerView.Adapter<HistoryAdaptor.HistoryH
                 public void onClick(View view) {
                     int position = getAdapterPosition();
                     if (listener != null && position != RecyclerView.NO_POSITION) {
-                        listener.onItemClick(histories.get(position));
+                        listener.onItemClick(getItem(position));
                     }
                 }
             });

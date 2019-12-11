@@ -4,8 +4,8 @@ import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 
-import com.example.asdlo.qrreadertest2.datebase.HistoryDao;
-import com.example.asdlo.qrreadertest2.datebase.HistoryDatabase;
+import com.example.asdlo.qrreadertest2.dao.HistoryDao;
+import com.example.asdlo.qrreadertest2.datebase.QrReaderDatabase;
 import com.example.asdlo.qrreadertest2.model.History;
 
 import java.util.List;
@@ -15,7 +15,7 @@ public class HistoryRepository {
     private LiveData<List<History>> allHistories;
 
     public HistoryRepository(Application application) {
-        HistoryDatabase database = HistoryDatabase.getInstance(application);
+        QrReaderDatabase database = QrReaderDatabase.getInstance(application);
         historyDao = database.historyDao();
         allHistories = historyDao.loadAllHistory();
     }

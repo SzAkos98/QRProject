@@ -54,7 +54,7 @@ public class HistoryFragment extends Fragment {
         historyViewModel.getAllHistories().observe(this, new Observer<List<History>>() {
             @Override
             public void onChanged(@Nullable List<History> histories) {
-                adaptor.setHistories(histories);
+                adaptor.submitList(histories);
             }
         });
 
