@@ -1,6 +1,7 @@
 package com.example.asdlo.qrreadertest2.fragments;
 
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -12,28 +13,27 @@ import android.widget.TextView;
 
 import com.example.asdlo.qrreadertest2.MainActivity;
 import com.example.asdlo.qrreadertest2.R;
+import com.example.asdlo.qrreadertest2.databinding.SearchFregmentBinder;
 
 public class ResultFragment extends Fragment {
 
-    TextView textView;
-    Button goBackBtn, goUrlBtn;
+    private SearchFregmentBinder binding;
     String url;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_result,
-                container, false);
-        textView = (TextView) view.findViewById(R.id.displayQRcode);
-        textView.setText("Your QR code is : \n" + SearchFragment.code);
-        goBackBtn = (Button) view.findViewById(R.id.goBackBtn);
-        goBackBtn.setOnClickListener(new View.OnClickListener() {
+
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_result, container, false);
+        View view = binding.getRoot();
+
+        binding.displayQRcodeTextView.setText("Your QR code is : \n" + SearchFragment.code);
+        binding.goBackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openActivity1 ();
             }
         });
-        goUrlBtn = (Button) view.findViewById(R.id.goUrlBtn);
-        goUrlBtn.setOnClickListener(new View.OnClickListener() {
+        binding.goUrlBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 url = SearchFragment.code;
