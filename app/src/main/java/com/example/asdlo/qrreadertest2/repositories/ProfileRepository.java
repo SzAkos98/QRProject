@@ -13,11 +13,13 @@ import java.util.List;
 public class ProfileRepository {
     private ProfileDao profileDao;
     private LiveData<List<Profile>> allProfiles;
+    private LiveData<String> firstName;
 
     public ProfileRepository(Application application) {
         QrReaderDatabase database = QrReaderDatabase.getInstance(application);
         profileDao = database.profileDao();
         allProfiles = profileDao.loadAllProfile();
+        firstName = profileDao.firstName();
     }
 
     public void insert(Profile profile) {
@@ -34,6 +36,10 @@ public class ProfileRepository {
 
     public LiveData<List<Profile>> getAllProfiles() {
         return allProfiles;
+    }
+
+    public LiveData<String> getFirstName() {
+        return firstName;
     }
 
     private static class InsertProfileAsyncTask extends AsyncTask<Profile, Void ,Void> {

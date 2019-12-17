@@ -18,6 +18,9 @@ public interface ProfileDao {
     @Query("SELECT * FROM profile")
     LiveData<List<Profile>> loadAllProfile();
 
+    @Query("SELECT name FROM profile ORDER BY id LIMIT 1")
+    LiveData<String> firstName();
+
     @Insert
     void insertProfile(Profile profile);
 
