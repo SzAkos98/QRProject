@@ -18,7 +18,7 @@
 
 
                 <TextView
-                    android:id="@+id/texViewAboutTitle"
+                    android:id="@+id/textViewAboutUserId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
@@ -27,7 +27,14 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/texViewDescription"
+                    android:id="@+id/textViewAboutId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+                <TextView
+                    android:id="@+id/textViewAboutTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"

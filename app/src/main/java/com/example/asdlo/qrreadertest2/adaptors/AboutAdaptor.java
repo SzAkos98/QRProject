@@ -1,5 +1,6 @@
 package com.example.asdlo.qrreadertest2.adaptors;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import com.example.asdlo.qrreadertest2.model.Header;
 import com.example.asdlo.qrreadertest2.model.RecyclerViewItem;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 
 public class AboutAdaptor extends RecyclerView.Adapter {
@@ -31,6 +33,7 @@ public class AboutAdaptor extends RecyclerView.Adapter {
 
     public AboutAdaptor(List<RecyclerViewItem> recyclerViewItems, Context mContext) {
         this.recyclerViewItems = recyclerViewItems;
+        System.out.println(recyclerViewItems.isEmpty());
         this.mContext = mContext;
     }
 
@@ -54,6 +57,7 @@ public class AboutAdaptor extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+
         RecyclerViewItem recyclerViewItem = recyclerViewItems.get(position);
         if (holder instanceof HeaderHolder) {
             HeaderHolder headerHolder = (HeaderHolder) holder;
@@ -61,6 +65,13 @@ public class AboutAdaptor extends RecyclerView.Adapter {
             System.out.println("11111111");
             headerHolder.texViewHeaderText.setText(header.getHeaderText());
 
+        } else if (holder instanceof AboutItemHolder) {
+            AboutItemHolder aboutItemHolder = (AboutItemHolder) holder;
+            AboutItem aboutItem = (AboutItem) recyclerViewItem;
+            System.out.println("3333333333");
+            aboutItemHolder.texViewAboutTitle.setText(aboutItem.getTitle());
+            aboutItemHolder.textViewAboutUserId.setText(String.valueOf(aboutItem.getUserId()));
+            aboutItemHolder.texViewAboutId.setText(String.valueOf(aboutItem.getId()));
         } else if (holder instanceof FooterHolder) {
             FooterHolder footerHolder = (FooterHolder) holder;
             Footer footer = (Footer) recyclerViewItem;
@@ -68,14 +79,7 @@ public class AboutAdaptor extends RecyclerView.Adapter {
 
             footerHolder.texViewQuote.setText(footer.getFooterText());
 
-        } else if (holder instanceof AboutItemHolder) {
-            AboutItemHolder aboutItemHolder = (AboutItemHolder) holder;
-            AboutItem aboutItem = (AboutItem) recyclerViewItem;
-            System.out.println("3333333333");
-            aboutItemHolder.texViewAboutTitle.setText(aboutItem.getTitle());
-            aboutItemHolder.texViewDescription.setText(aboutItem.getDescription());
         }
-
     }
 
     @Override
@@ -103,12 +107,14 @@ public class AboutAdaptor extends RecyclerView.Adapter {
     }
 
     private class AboutItemHolder extends RecyclerView.ViewHolder {
-        TextView texViewAboutTitle, texViewDescription;
+        TextView texViewAboutTitle, texViewAboutId, textViewAboutUserId;
 
         AboutItemHolder(View itemView) {
             super(itemView);
-            texViewAboutTitle = itemView.findViewById(R.id.texViewAboutTitle);
-            texViewDescription = itemView.findViewById(R.id.texViewDescription);
+            texViewAboutTitle = itemView.findViewById(R.id.textViewAboutTitle);
+            texViewAboutId = itemView.findViewById(R.id.textViewAboutId);
+            textViewAboutUserId = itemView.findViewById(R.id.textViewAboutUserId);
+
         }
     }
 

@@ -3,12 +3,14 @@ package com.example.asdlo.qrreadertest2.model;
 public class AboutItem extends RecyclerViewItem {
 
     private String title;
-    private String description;
+    private int id;
+    private int userId;
 
 
-    public AboutItem (String title, String description) {
-        this.description = description;
+    public AboutItem (int id , int userId, String title) {
         this.title = title;
+        this.id=id;
+        this.userId=userId;
     }
 
     public String getTitle() {
@@ -19,11 +21,19 @@ public class AboutItem extends RecyclerViewItem {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
+    public int getId() {
+        return id;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }
